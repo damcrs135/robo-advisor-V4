@@ -54,7 +54,9 @@ def definir_prix(prix: pd.DataFrame | None) -> None:
 
 
 def _hors_ligne() -> bool:
-    return os.environ.get("ROBO_HORS_LIGNE", "0") == "1"
+    """Vrai si aucun appel à Yahoo n'est autorisé (modes « demo » et « local » de donnees.py)."""
+    import donnees
+    return donnees.mode() != "direct"
 
 
 def _telecharger_yahoo(tickers: list[str], debut: str = "2005-01-01") -> pd.DataFrame:
@@ -94,6 +96,11 @@ def charger_prix(tickers: list[str]) -> tuple[pd.DataFrame, str]:
     if cle in _cache:
         return _cache[cle]
     prix, source = None, "aucune"
+    import donnees
+    if donnees.mode() == "demo":
+        res = (donnees.prix_fictifs(tickers).reindex(columns=tickers), "démo (cours fictifs)")
+        _cache[cle] = res
+        return res
     if not _hors_ligne() and tickers:
         try:
             prix, source = _telecharger_yahoo(tickers), "yahoo"

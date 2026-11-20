@@ -101,6 +101,8 @@ with st.sidebar:
         st.markdown(f"<div class='ra-carte' style='padding:10px 12px'><div class='ra-note'>{tr('Votre dossier', 'Your file')}</div>"
                     f"<b>{etat.nom_profil()} · {etat.profil_num()}/5</b><br><span class='ra-note'>{etat.eur(etat.montant())} · "
                     f"{etat.nom_enveloppe()}</span></div>", unsafe_allow_html=True)
+    import donnees
+    st.caption(f"{ {'demo': '🧪', 'local': '💾', 'direct': '🟢'}[donnees.mode()] } {tr('Données', 'Data')} : {donnees.nom_mode(etat.L())}")
     st.caption("⚠️ " + tr("Projet pédagogique de M2 Banque-Finance : ceci n'est pas un conseil en investissement réel.",
                           "Master's student project: this is not real investment advice."))
 

@@ -13,9 +13,9 @@ import yfinance as yf
 import questionnaire as qn
 from textes import t
 
-# True = données fictives, aucun appel internet (pour tester sans limite)
-# False = vraies données (Yahoo Finance et Google Actualités)
-MODE_DEMO = True
+import donnees
+
+MODE_DEMO = donnees.mode() != "direct"   # réglage unique : ROBO_DONNEES (voir donnees.py)
 
 
 # ================================================================ Textes FR / EN
@@ -289,10 +289,11 @@ def afficher_accueil(L, aller, resume=None):
 
     # ================================================================ 3 colonnes
     if MODE_DEMO:
-        st.caption("🧪 Mode démo : données fictives, aucun appel internet.")
+        st.caption("🧪 " + ("Mode démo : actualités et marchés fictifs, aucun appel internet." if L == "fr"
+                            else "Demo mode: simulated news and markets, no internet calls."))
 
     HAUTEUR = 640
-    gauche, milieu, droite = st.columns([2, 4, 2.6], gap="medium")
+    gauche, milieu, droite = st.columns([3, 4, 2.6], gap="medium")
 
     # ---------- Gauche : actualités
     with gauche:
