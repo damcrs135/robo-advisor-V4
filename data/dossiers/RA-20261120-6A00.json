@@ -1,0 +1,157 @@
+{
+ "langue": "fr",
+ "reponses": {
+  "age": 18,
+  "situation_familiale": "couple_enfants",
+  "revenus": "100-200k",
+  "patrimoine": 1000000,
+  "epargne_precaution": false,
+  "credits": false,
+  "taux_effort": "0",
+  "statut_pro": "independant",
+  "stabilite_revenus": "variables",
+  "objectif": "immobilier",
+  "horizon": "<2",
+  "priorite": "equilibre",
+  "rendement_attendu": "6-8",
+  "versement_mensuel": 1000,
+  "cible": 0,
+  "besoin_liquidite": false,
+  "quiz_etf": true,
+  "quiz_taux": false,
+  "quiz_diversification": null,
+  "quiz_perte": true,
+  "quiz_fonds_euros": true,
+  "anciennete": "<2",
+  "frequence": "annuel",
+  "niveau": "debutant",
+  "produits_detenus": [],
+  "reaction_baisse": "attendre",
+  "perte_max": "20",
+  "choix_portefeuille": "D",
+  "tirage": "certain",
+  "gain_perte": "beaucoup",
+  "suivi": "quotidien",
+  "durabilite": "article 8",
+  "enveloppe_souhaitee": "assurance-vie",
+  "zone": "Europe",
+  "exclusions": [],
+  "montant": 1000000
+ },
+ "profil": {
+  "profil": 5,
+  "notes": {
+   "tolerance": 2,
+   "horizon": 1,
+   "capacite": 3,
+   "connaissances": 3
+  },
+  "plafonds": [
+   "Horizon <2 ans : profil limité à 1.",
+   "Capacité à subir des pertes (pas d'épargne de précaution, 100% du patrimoine investi ici) : profil limité à 3.",
+   "Connaissances (quiz 4/5 et expérience) : profil limité à 3.",
+   "Tolérance au risque déclarée : 2/5."
+  ],
+  "alertes": [
+   "Constituez d'abord une épargne de précaution disponible à tout moment.",
+   "Plus de la moitié de votre patrimoine serait investie ici : risque de concentration."
+  ],
+  "nom": "Prudent",
+  "quiz_score": 4,
+  "profil_calcule": 1
+ },
+ "enveloppe": "assurance-vie",
+ "portefeuille": {
+  "DE0005557508": 0.0688,
+  "FR0000045072": 0.0612,
+  "FR0000051807": 0.0612,
+  "FR0000120503": 0.0612,
+  "FR0000121972": 0.0612,
+  "FR0000124141": 0.0425,
+  "FR0000125338": 0.0612,
+  "FR0000284689": 0.05,
+  "GB0005405286": 0.0694,
+  "GB00BH4HKS39": 0.0688,
+  "IE00B4ND3602": 0.03,
+  "IE00BYTBXV33": 0.0688,
+  "IT0004176001": 0.0425,
+  "LU2008763935": 0.02,
+  "NL0011821202": 0.0688,
+  "OBL-DANONE-2031": 0.0087,
+  "OBL-IE-2027": 0.005,
+  "OBL-NL-2027": 0.005,
+  "OBL-NL-2029": 0.0087,
+  "OBL-OAT-2031": 0.0087,
+  "OBL-REXEL-2028": 0.0025,
+  "OBL-SCHNEIDER-2029": 0.0087,
+  "OBL-VALEO-2027": 0.0025,
+  "US17275R1023": 0.0382,
+  "US22160K1051": 0.0382,
+  "US5801351017": 0.0382
+ },
+ "horizon_ans": 2,
+ "controles": [
+  {
+   "code": "RISQUE",
+   "titre": "Profil choisi plus risqué que le profil calculé",
+   "statut": "attention",
+   "detail": "Profil calculé 1/5, profil retenu à la demande du client 5/5. Le client doit confirmer par écrit qu'il accepte ce niveau de risque.",
+   "regle": "MiFID II art. 25(2) — évaluation de l'adéquation"
+  },
+  {
+   "code": "CAPACITE",
+   "titre": "Concentration du patrimoine",
+   "statut": "attention",
+   "detail": "100% du patrimoine placé sur cette seule recommandation.",
+   "regle": "Capacité à subir des pertes"
+  },
+  {
+   "code": "PRECAUTION",
+   "titre": "Pas d'épargne de précaution",
+   "statut": "attention",
+   "detail": "Conseiller de garder 3 à 6 mois de dépenses disponibles avant d'investir.",
+   "regle": "Bonnes pratiques de conseil"
+  },
+  {
+   "code": "CONNAISSANCES",
+   "titre": "Produits risqués et connaissances limitées",
+   "statut": "attention",
+   "detail": "Actions en direct 85%, haut rendement 0% pour un client aux connaissances limitées : renforcer l'information remise.",
+   "regle": "MiFID II — connaissances et expérience"
+  },
+  {
+   "code": "DIVERSIFICATION",
+   "titre": "Diversification",
+   "statut": "ok",
+   "detail": "26 lignes, aucune au-dessus de 30 %.",
+   "regle": "Règle de diversification interne"
+  },
+  {
+   "code": "VOLATILITE",
+   "titre": "Volatilité historique / maximum du profil",
+   "statut": "ok",
+   "detail": "11.9% pour un maximum de 18%.",
+   "regle": "Grille des profils"
+  },
+  {
+   "code": "DURABILITE",
+   "titre": "Préférences de durabilité respectées",
+   "statut": "ok",
+   "detail": "Exclusions et filtre ESG appliqués à la construction.",
+   "regle": "MiFID II — préférences de durabilité (règlement délégué 2021/1253)"
+  }
+ ],
+ "synthese": "attention",
+ "montant": 1000000,
+ "id": "RA-20261120-6A00",
+ "maj": "2026-11-20T12:02:30",
+ "journal": [
+  {
+   "date": "2026-11-20T12:02:30",
+   "auteur": "client",
+   "evenement": "Recommandation émise"
+  }
+ ],
+ "cree_le": "2026-11-20T12:02:30",
+ "statut": "à valider"
+}
