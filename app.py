@@ -35,7 +35,8 @@ _GB = ("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox=
 st.markdown(f"""<style>
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
 html, body, [class*="css"], .stMarkdown, button, input, label {{font-family:'Inter', sans-serif;}}
-.block-container {{padding-top:2.2rem; max-width:1280px;}}
+.block-container, [data-testid="stMainBlockContainer"] {{padding:2rem 1.5rem 3rem; max-width:1600px;}}
+[data-testid="stSidebar"] {{min-width:230px; max-width:230px;}}
 .ra-titre {{font-size:28px; font-weight:700; color:#1B2A41; letter-spacing:-.4px; margin:0 0 2px;}}
 .ra-sous-titre {{font-size:14px; color:#6B7785; margin:0 0 18px;}}
 .ra-kpis {{display:grid; grid-template-columns:repeat(auto-fit,minmax(150px,1fr)); gap:10px; margin:4px 0 14px;}}
