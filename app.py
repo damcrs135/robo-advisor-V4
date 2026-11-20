@@ -20,7 +20,7 @@ from etat import tr
 from vues import (accueil, conseiller, documents, durabilite, explication, fiscal, methodologie, parcours,
                   portefeuille, profil, projection, risques)
 
-st.set_page_config(page_title="Robo-advisor patrimonial", page_icon="📈", layout="wide")
+st.set_page_config(page_title="Robo-advisor patrimonial", page_icon="📈", layout="wide", initial_sidebar_state="expanded")
 etat.initialiser()
 
 # ---------------------------------------------------------------------------
