@@ -73,3 +73,59 @@ def analyser(portefeuille: dict) -> dict:
     return {"part_esg": esg_oui, "exposition_tags": dict(sorted(expo.items(), key=lambda x: -x[1])),
             "intensite_carbone": intensite, "couverture_carbone": poids_c / total,
             "reference_monde": REFERENCE_MONDE, "principales_sources": contributions, "sfdr": sfdr}
+
+
+# ---------------------------------------------------------------------------
+# Composition : secteurs et pays
+# ---------------------------------------------------------------------------
+PAYS_ETATS = {"française": "France", "Allemagne": "Allemagne", "Espagne": "Espagne", "Belgique": "Belgique",
+              "Pays-Bas": "Pays-Bas", "Autriche": "Autriche", "Irlande": "Irlande", "Finlande": "Finlande",
+              "italienne": "Italie", "portugaise": "Portugal"}
+
+
+def _action_emetteur(emetteur: str):
+    u = regles.charger_univers()
+    actions = u[u["type"] == "action"]
+    mot = str(emetteur).split()[0].lower() if emetteur else ""
+    for _, l in actions.iterrows():
+        if mot and mot in str(l["nom"]).lower():
+            return l
+    return None
+
+
+def secteur_pays(isin: str, langue: str = "fr") -> tuple[str, str]:
+    """(secteur, pays) d'une ligne, y compris pour les obligations et les fonds."""
+    en = langue == "en"
+    u = regles.charger_univers()
+    l = u.loc[isin]
+    if l["type"] == "action":
+        return l["secteur"] or "—", l["pays"] or "—"
+    if l["type"] == "obligation":
+        if l["sous_classe"] in ("etat", "etat_court"):
+            pays = next((p for cle, p in PAYS_ETATS.items() if cle in str(l["emetteur"])), "Zone euro")
+            return ("Government debt" if en else "Dettes d'État"), pays
+        a = _action_emetteur(l["emetteur"])
+        if a is not None:
+            return a["secteur"], a["pays"]
+        return ("Corporate bonds" if en else "Obligations d'entreprises"), "Zone euro"
+    sc = l["sous_classe"]
+    secteur = {"fonds_euros": ("Fonds en euros", "Euro fund"), "monetaire": ("Monétaire", "Money market"),
+               "or": ("Or", "Gold"), "immobilier": ("Immobilier", "Real estate"), "scpi": ("Immobilier", "Real estate"),
+               "patrimonial": ("Fonds diversifiés", "Multi-asset funds"), "actions_actif": ("Fonds diversifiés", "Multi-asset funds")
+               }.get(sc, ("Fonds indiciels", "Index funds"))[1 if en else 0]
+    zone = l["zone"] or "Monde"
+    pays = zone if zone in ("France",) else (f"{zone} (fonds)" if not en else f"{zone} (funds)")
+    return secteur, pays
+
+
+def composition(portefeuille: dict, langue: str = "fr") -> dict:
+    secteurs, pays = {}, {}
+    for i, w in portefeuille.items():
+        s, p = secteur_pays(i, langue)
+        secteurs[s] = secteurs.get(s, 0.0) + w
+        pays[p] = pays.get(p, 0.0) + w
+    poids = sorted(portefeuille.values(), reverse=True)
+    vrais_pays = {p for p in pays if "(" not in p and p != "Zone euro"}
+    return {"secteurs": dict(sorted(secteurs.items(), key=lambda x: -x[1])),
+            "pays": dict(sorted(pays.items(), key=lambda x: -x[1])),
+            "n_lignes": len(portefeuille), "top10": sum(poids[:10]), "n_pays": len(vrais_pays)}

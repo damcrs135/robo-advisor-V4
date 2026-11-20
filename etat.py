@@ -175,6 +175,17 @@ def portefeuille_courant() -> dict:
     raise RuntimeError("Construction du portefeuille impossible")
 
 
+def portefeuille_sans_preferences() -> dict:
+    """Même profil, même enveloppe, même tirage des titres, mais sans exclusion ni filtre ESG (pour comparer)."""
+    s = st.session_state
+    r = s.reponses
+    try:
+        return regles.construire_portefeuille(profil_num(), "aucune", enveloppe(), horizon=r.get("horizon"),
+                                              zone=r.get("zone", "Monde"), graine=_graine())
+    except ValueError:
+        return {}
+
+
 def items_pf():
     return tuple(sorted(portefeuille_courant().items()))
 

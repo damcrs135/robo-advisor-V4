@@ -70,7 +70,7 @@ P = {
     "risques": st.Page(risques.afficher, title=tr("Risques et optimisation", "Risk & optimisation"), icon=":material/monitoring:", url_path="risques"),
     "projection": st.Page(projection.afficher, title=tr("Projection", "Projection"), icon=":material/trending_up:", url_path="projection"),
     "fiscal": st.Page(fiscal.afficher, title=tr("Fiscalité", "Tax"), icon=":material/account_balance:", url_path="fiscalite"),
-    "durabilite": st.Page(durabilite.afficher, title=tr("Durabilité", "Sustainability"), icon=":material/eco:", url_path="durabilite"),
+    "durabilite": st.Page(durabilite.afficher, title=tr("Composition et durabilité", "Composition & sustainability"), icon=":material/donut_large:", url_path="durabilite"),
     "explication": st.Page(explication.afficher, title=tr("Explication", "Explanation"), icon=":material/forum:", url_path="explication"),
     "documents": st.Page(documents.afficher, title=tr("Mes documents", "My documents"), icon=":material/description:", url_path="documents"),
     "conseiller": st.Page(conseiller.afficher, title=tr("Espace conseiller", "Advisor area"), icon=":material/badge:", url_path="conseiller"),
